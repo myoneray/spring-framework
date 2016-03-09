@@ -1,0 +1,11 @@
+/RequestAndSessionScopedBeanTests.class
+/RequestContextListenerTests.class
+/RequestScopeTests.class
+/RequestScopedProxyTests.class
+/ServletRequestAttributesTests.class
+/ServletWebRequestHttpMethodsTests.class
+/ServletWebRequestTests.class
+/SessionScopeTests$CustomDestructionAwareBeanPostProcessor.class
+/SessionScopeTests$CustomSerializableDestructionAwareBeanPostProcessor.class
+/SessionScopeTests.class
+/WebApplicationContextScopeTests.class

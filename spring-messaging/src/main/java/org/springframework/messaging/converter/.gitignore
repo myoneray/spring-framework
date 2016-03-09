@@ -1,0 +1,14 @@
+/AbstractMessageConverter.class
+/ByteArrayMessageConverter.class
+/CompositeMessageConverter.class
+/ContentTypeResolver.class
+/DefaultContentTypeResolver.class
+/GenericMessageConverter.class
+/MappingJackson2MessageConverter.class
+/MarshallingMessageConverter.class
+/MessageConversionException.class
+/MessageConverter.class
+/SimpleMessageConverter.class
+/SmartMessageConverter.class
+/StringMessageConverter.class
+/package-info.class

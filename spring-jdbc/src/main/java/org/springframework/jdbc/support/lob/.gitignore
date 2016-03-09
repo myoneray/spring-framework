@@ -1,0 +1,15 @@
+/AbstractLobHandler.class
+/DefaultLobHandler$DefaultLobCreator.class
+/DefaultLobHandler.class
+/JtaLobCreatorSynchronization.class
+/LobCreator.class
+/LobCreatorUtils.class
+/LobHandler.class
+/OracleLobHandler$LobCallback.class
+/OracleLobHandler$OracleLobCreator.class
+/OracleLobHandler.class
+/PassThroughBlob.class
+/PassThroughClob.class
+/SpringLobCreatorSynchronization.class
+/TemporaryLobCreator.class
+/package-info.class

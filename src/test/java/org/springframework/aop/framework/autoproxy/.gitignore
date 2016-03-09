@@ -1,0 +1,6 @@
+/AdvisorAutoProxyCreatorIntegrationTests.class
+/NeverMatchAdvisor.class
+/NoSetters.class
+/OrderedTxCheckAdvisor$TxCountingBeforeAdvice.class
+/OrderedTxCheckAdvisor.class
+/Rollback.class

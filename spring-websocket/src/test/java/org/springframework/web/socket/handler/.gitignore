@@ -1,0 +1,14 @@
+/BeanCreatingHandlerProviderTests$Config.class
+/BeanCreatingHandlerProviderTests$EchoHandler.class
+/BeanCreatingHandlerProviderTests$EchoService.class
+/BeanCreatingHandlerProviderTests$SimpleEchoHandler.class
+/BeanCreatingHandlerProviderTests.class
+/ConcurrentWebSocketSessionDecoratorTests$BlockingSession.class
+/ConcurrentWebSocketSessionDecoratorTests.class
+/ExceptionWebSocketHandlerDecoratorTests.class
+/PerConnectionWebSocketHandlerTests$EchoHandler.class
+/PerConnectionWebSocketHandlerTests.class
+/TestPrincipal.class
+/TestWebSocketSession.class
+/WebSocketHandlerDecoratorTests.class
+/WebSocketHttpHeadersTests.class

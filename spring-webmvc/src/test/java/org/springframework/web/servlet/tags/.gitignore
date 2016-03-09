@@ -1,0 +1,16 @@
+/AbstractTagTests.class
+/ArgumentTagTests$MockArgumentSupportTag.class
+/ArgumentTagTests.class
+/BindTagOutsideDispatcherServletTests.class
+/BindTagTests.class
+/EvalTagTests$Bean.class
+/EvalTagTests.class
+/HtmlEscapeTagOutsideDispatcherServletTests.class
+/HtmlEscapeTagTests.class
+/MessageTagOutsideDispatcherServletTests.class
+/MessageTagTests.class
+/ParamTagTests$MockParamSupportTag.class
+/ParamTagTests.class
+/ParamTests.class
+/ThemeTagTests.class
+/UrlTagTests.class

@@ -1,0 +1,17 @@
+/AbstractEmbeddedDatabaseConfigurer.class
+/ConnectionProperties.class
+/DataSourceFactory.class
+/DerbyEmbeddedDatabaseConfigurer.class
+/EmbeddedDatabase.class
+/EmbeddedDatabaseBuilder.class
+/EmbeddedDatabaseConfigurer.class
+/EmbeddedDatabaseConfigurerFactory.class
+/EmbeddedDatabaseFactory$EmbeddedDataSourceProxy.class
+/EmbeddedDatabaseFactory.class
+/EmbeddedDatabaseFactoryBean.class
+/EmbeddedDatabaseType.class
+/H2EmbeddedDatabaseConfigurer.class
+/HsqlEmbeddedDatabaseConfigurer.class
+/OutputStreamFactory.class
+/SimpleDriverDataSourceFactory.class
+/package-info.class

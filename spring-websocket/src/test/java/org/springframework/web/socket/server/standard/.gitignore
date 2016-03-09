@@ -1,0 +1,15 @@
+/ServerEndpointExporterTests$AnnotatedDummyEndpoint.class
+/ServerEndpointExporterTests$AnnotatedDummyEndpointBean.class
+/ServerEndpointExporterTests$Config.class
+/ServerEndpointExporterTests$DummyEndpoint.class
+/ServerEndpointExporterTests.class
+/ServerEndpointRegistrationTests$Config.class
+/ServerEndpointRegistrationTests$EchoEndpoint.class
+/ServerEndpointRegistrationTests$EchoService.class
+/ServerEndpointRegistrationTests.class
+/SpringConfiguratorTests$ComponentEchoEndpoint.class
+/SpringConfiguratorTests$Config.class
+/SpringConfiguratorTests$EchoEndpoint.class
+/SpringConfiguratorTests$EchoService.class
+/SpringConfiguratorTests$PerConnectionEchoEndpoint.class
+/SpringConfiguratorTests.class

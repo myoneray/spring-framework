@@ -1,0 +1,17 @@
+/AbstractHttpReceivingTransportHandler.class
+/AbstractHttpSendingTransportHandler.class
+/AbstractTransportHandler.class
+/DefaultSockJsService.class
+/EventSourceTransportHandler$EventSourceStreamingSockJsSession.class
+/EventSourceTransportHandler.class
+/HtmlFileTransportHandler$HtmlFileStreamingSockJsSession.class
+/HtmlFileTransportHandler.class
+/JsonpPollingTransportHandler.class
+/JsonpReceivingTransportHandler.class
+/SockJsWebSocketHandler.class
+/WebSocketTransportHandler.class
+/XhrPollingTransportHandler.class
+/XhrReceivingTransportHandler.class
+/XhrStreamingTransportHandler$XhrStreamingSockJsSession.class
+/XhrStreamingTransportHandler.class
+/package-info.class

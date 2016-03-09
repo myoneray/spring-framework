@@ -1,0 +1,7 @@
+/AbstractDatabaseInitializationTests.class
+/AbstractDatabasePopulatorTests.class
+/H2DatabasePopulatorTests.class
+/HsqlDatabasePopulatorTests.class
+/ResourceDatabasePopulatorTests.class
+/ScriptUtilsIntegrationTests.class
+/ScriptUtilsUnitTests.class

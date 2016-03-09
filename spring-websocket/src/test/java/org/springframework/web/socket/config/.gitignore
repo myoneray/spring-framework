@@ -1,0 +1,15 @@
+/BarTestInterceptor.class
+/CustomArgumentResolver.class
+/CustomReturnValueHandler.class
+/FooTestInterceptor.class
+/FooWebSocketHandler.class
+/HandlersBeanDefinitionParserTests.class
+/MessageBrokerBeanDefinitionParserTests.class
+/TestChannelInterceptor.class
+/TestHandshakeHandler.class
+/TestMessageCodec.class
+/TestStompErrorHandler.class
+/TestTaskScheduler.class
+/TestWebSocketHandler.class
+/TestWebSocketHandlerDecorator.class
+/TestWebSocketHandlerDecoratorFactory.class

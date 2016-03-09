@@ -1,0 +1,15 @@
+/BaseViewTests$ConcreteView.class
+/BaseViewTests$TestView.class
+/BaseViewTests.class
+/ContentNegotiatingViewResolverTests.class
+/DefaultRequestToViewNameTranslatorTests.class
+/DummyMacroRequestContext.class
+/InternalResourceViewTests.class
+/RedirectViewTests$TestRedirectView.class
+/RedirectViewTests.class
+/RedirectViewUriTemplateTests.class
+/ResourceBundleViewResolverNoCacheTests.class
+/ResourceBundleViewResolverTests$TestView.class
+/ResourceBundleViewResolverTests.class
+/ViewResolverTests$TestView.class
+/ViewResolverTests.class

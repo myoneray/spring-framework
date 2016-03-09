@@ -1,0 +1,15 @@
+/CustomErrorCodeException.class
+/CustomSQLExceptionTranslatorRegistrarTests.class
+/CustomSqlExceptionTranslator.class
+/DataFieldMaxValueIncrementerTests.class
+/DefaultLobHandlerTests.class
+/JdbcUtilsTests.class
+/KeyHolderTests.class
+/NativeJdbcExtractorTests.class
+/SQLErrorCodeSQLExceptionTranslatorTests.class
+/SQLErrorCodesFactoryTests.class
+/SQLExceptionCustomTranslatorTests.class
+/SQLExceptionSubclassFactory.class
+/SQLExceptionSubclassTranslatorTests.class
+/SQLStateExceptionTranslatorTests.class
+/SQLStateSQLExceptionTranslatorTests.class

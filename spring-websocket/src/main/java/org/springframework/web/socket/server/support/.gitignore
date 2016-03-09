@@ -1,0 +1,8 @@
+/AbstractHandshakeHandler.class
+/DefaultHandshakeHandler.class
+/HandshakeInterceptorChain.class
+/HttpSessionHandshakeInterceptor.class
+/OriginHandshakeInterceptor.class
+/WebSocketHandlerMapping.class
+/WebSocketHttpRequestHandler.class
+/package-info.class

@@ -1,0 +1,16 @@
+/AbstractMethodArgumentResolutionException.class
+/AbstractNamedValueMethodArgumentResolver$NamedValueInfo.class
+/AbstractNamedValueMethodArgumentResolver.class
+/AnnotationExceptionHandlerMethodResolver.class
+/DefaultMessageHandlerMethodFactory.class
+/DestinationVariableMethodArgumentResolver$DestinationVariableNamedValueInfo.class
+/DestinationVariableMethodArgumentResolver.class
+/HeaderMethodArgumentResolver$HeaderNamedValueInfo.class
+/HeaderMethodArgumentResolver.class
+/HeadersMethodArgumentResolver.class
+/MessageHandlerMethodFactory.class
+/MessageMethodArgumentResolver.class
+/MethodArgumentNotValidException.class
+/MethodArgumentTypeMismatchException.class
+/PayloadArgumentResolver.class
+/package-info.class

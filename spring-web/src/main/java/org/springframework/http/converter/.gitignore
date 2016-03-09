@@ -1,0 +1,17 @@
+/AbstractGenericHttpMessageConverter.class
+/AbstractHttpMessageConverter.class
+/BufferedImageHttpMessageConverter.class
+/ByteArrayHttpMessageConverter.class
+/FormHttpMessageConverter$MimeDelegate.class
+/FormHttpMessageConverter$MultipartHttpOutputMessage.class
+/FormHttpMessageConverter.class
+/GenericHttpMessageConverter.class
+/HttpMessageConversionException.class
+/HttpMessageConverter.class
+/HttpMessageNotReadableException.class
+/HttpMessageNotWritableException.class
+/ObjectToStringHttpMessageConverter.class
+/ResourceHttpMessageConverter$ActivationMediaTypeFactory.class
+/ResourceHttpMessageConverter.class
+/StringHttpMessageConverter.class
+/package-info.class

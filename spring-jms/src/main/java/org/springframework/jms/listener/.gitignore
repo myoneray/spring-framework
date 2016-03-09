@@ -1,0 +1,14 @@
+/AbstractJmsListeningContainer$SharedConnectionNotInitializedException.class
+/AbstractJmsListeningContainer.class
+/AbstractMessageListenerContainer$MessageRejectedWhileStoppingException.class
+/AbstractMessageListenerContainer.class
+/AbstractPollingMessageListenerContainer$MessageListenerContainerResourceFactory.class
+/AbstractPollingMessageListenerContainer.class
+/DefaultMessageListenerContainer$AsyncMessageListenerInvoker.class
+/DefaultMessageListenerContainer.class
+/LocallyExposedJmsResourceHolder.class
+/MessageListenerContainer.class
+/SessionAwareMessageListener.class
+/SimpleMessageListenerContainer.class
+/SubscriptionNameProvider.class
+/package-info.class

@@ -1,0 +1,16 @@
+/BatchSqlUpdate.class
+/GenericSqlQuery.class
+/GenericStoredProcedure.class
+/MappingSqlQuery.class
+/MappingSqlQueryWithParameters$RowMapperImpl.class
+/MappingSqlQueryWithParameters.class
+/RdbmsOperation.class
+/SqlCall.class
+/SqlFunction.class
+/SqlOperation.class
+/SqlQuery.class
+/SqlUpdate.class
+/StoredProcedure.class
+/UpdatableSqlQuery$RowMapperImpl.class
+/UpdatableSqlQuery.class
+/package-info.class

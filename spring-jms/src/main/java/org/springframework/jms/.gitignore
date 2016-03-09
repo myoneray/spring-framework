@@ -1,0 +1,15 @@
+/IllegalStateException.class
+/InvalidClientIDException.class
+/InvalidDestinationException.class
+/InvalidSelectorException.class
+/JmsException.class
+/JmsSecurityException.class
+/MessageEOFException.class
+/MessageFormatException.class
+/MessageNotReadableException.class
+/MessageNotWriteableException.class
+/ResourceAllocationException.class
+/TransactionInProgressException.class
+/TransactionRolledBackException.class
+/UncategorizedJmsException.class
+/package-info.class

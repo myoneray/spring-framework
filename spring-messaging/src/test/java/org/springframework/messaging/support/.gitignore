@@ -1,0 +1,13 @@
+/ChannelInterceptorTests$AbstractTestInterceptor.class
+/ChannelInterceptorTests$NullReturningPreSendInterceptor.class
+/ChannelInterceptorTests$PreSendInterceptor.class
+/ChannelInterceptorTests$TestMessageHandler.class
+/ChannelInterceptorTests.class
+/ExecutorSubscribableChannelTests$AbstractTestInterceptor.class
+/ExecutorSubscribableChannelTests$BeforeHandleInterceptor.class
+/ExecutorSubscribableChannelTests$NullReturningBeforeHandleInterceptor.class
+/ExecutorSubscribableChannelTests.class
+/MessageBuilderTests.class
+/MessageHeaderAccessorTests$TestMessageHeaderAccessor.class
+/MessageHeaderAccessorTests.class
+/NativeMessageHeaderAccessorTests.class

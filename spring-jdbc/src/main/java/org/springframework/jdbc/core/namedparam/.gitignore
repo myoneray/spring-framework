@@ -1,0 +1,14 @@
+/AbstractSqlParameterSource.class
+/BeanPropertySqlParameterSource.class
+/EmptySqlParameterSource.class
+/MapSqlParameterSource.class
+/NamedParameterBatchUpdateUtils.class
+/NamedParameterJdbcDaoSupport.class
+/NamedParameterJdbcOperations.class
+/NamedParameterJdbcTemplate.class
+/NamedParameterUtils$ParameterHolder.class
+/NamedParameterUtils.class
+/ParsedSql.class
+/SqlParameterSource.class
+/SqlParameterSourceUtils.class
+/package-info.class

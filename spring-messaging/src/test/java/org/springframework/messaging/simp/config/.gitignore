@@ -1,0 +1,11 @@
+/MessageBrokerConfigurationTests$BaseTestMessageBrokerConfig.class
+/MessageBrokerConfigurationTests$BrokerRelayConfig.class
+/MessageBrokerConfigurationTests$CustomConfig.class
+/MessageBrokerConfigurationTests$CustomThreadPoolTaskExecutor.class
+/MessageBrokerConfigurationTests$DefaultConfig.class
+/MessageBrokerConfigurationTests$SimpleBrokerConfig.class
+/MessageBrokerConfigurationTests$TestChannel.class
+/MessageBrokerConfigurationTests$TestController.class
+/MessageBrokerConfigurationTests$TestValidator.class
+/MessageBrokerConfigurationTests.class
+/StompBrokerRelayRegistrationTests.class

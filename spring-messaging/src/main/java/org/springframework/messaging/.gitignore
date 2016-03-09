@@ -1,0 +1,10 @@
+/Message.class
+/MessageChannel.class
+/MessageDeliveryException.class
+/MessageHandler.class
+/MessageHandlingException.class
+/MessageHeaders.class
+/MessagingException.class
+/PollableChannel.class
+/SubscribableChannel.class
+/package-info.class

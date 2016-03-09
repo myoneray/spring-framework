@@ -1,0 +1,14 @@
+/CharacterEncodingFilterTests.class
+/CompositeFilterTests$MockFilter.class
+/CompositeFilterTests.class
+/CorsFilterTests.class
+/DelegatingFilterProxyTests$MockFilter.class
+/DelegatingFilterProxyTests.class
+/ForwardedHeaderFilterTests.class
+/HiddenHttpMethodFilterTests.class
+/HttpPutFormContentFilterTests.class
+/RequestContextFilterTests.class
+/RequestLoggingFilterTests$MyRequestLoggingFilter.class
+/RequestLoggingFilterTests$NoOpFilterChain.class
+/RequestLoggingFilterTests.class
+/ShallowEtagHeaderFilterTests.class

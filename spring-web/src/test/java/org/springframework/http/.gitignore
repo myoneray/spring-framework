@@ -1,0 +1,10 @@
+/CacheControlTests.class
+/HttpEntityTests.class
+/HttpHeadersTests.class
+/HttpRangeTests.class
+/HttpStatusTests.class
+/MediaTypeTests.class
+/MockHttpInputMessage.class
+/MockHttpOutputMessage.class
+/RequestEntityTests.class
+/ResponseEntityTests.class
