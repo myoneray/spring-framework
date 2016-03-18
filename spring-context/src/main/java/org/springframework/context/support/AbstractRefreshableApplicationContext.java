@@ -25,28 +25,30 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextException;
 
 /**
- * Base class for {@link org.springframework.context.ApplicationContext}
- * implementations which are supposed to support multiple calls to {@link #refresh()},
- * creating a new internal bean factory instance every time.
- * Typically (but not necessarily), such a context will be driven by
- * a set of config locations to load bean definitions from.
+ * Base class for {@link org.springframework.context.ApplicationContext} implementations
+ * which are supposed to support multiple calls to {@link #refresh()}, creating a new
+ * internal bean factory instance every time. Typically (but not necessarily), such a
+ * context will be driven by a set of config locations to load bean definitions from.
  *
- * <p>The only method to be implemented by subclasses is {@link #loadBeanDefinitions},
- * which gets invoked on each refresh. A concrete implementation is supposed to load
- * bean definitions into the given
- * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory},
- * typically delegating to one or more specific bean definition readers.
+ * <p>
+ * The only method to be implemented by subclasses is {@link #loadBeanDefinitions}, which
+ * gets invoked on each refresh. A concrete implementation is supposed to load bean
+ * definitions into the given
+ * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}, typically
+ * delegating to one or more specific bean definition readers.
  *
- * <p><b>Note that there is a similar base class for WebApplicationContexts.</b>
+ * <p>
+ * <b>Note that there is a similar base class for WebApplicationContexts.</b>
  * {@link org.springframework.web.context.support.AbstractRefreshableWebApplicationContext}
- * provides the same subclassing strategy, but additionally pre-implements
- * all context functionality for web environments. There is also a
- * pre-defined way to receive config locations for a web context.
+ * provides the same subclassing strategy, but additionally pre-implements all context
+ * functionality for web environments. There is also a pre-defined way to receive config
+ * locations for a web context.
  *
- * <p>Concrete standalone subclasses of this base class, reading in a
- * specific bean definition format, are {@link ClassPathXmlApplicationContext}
- * and {@link FileSystemXmlApplicationContext}, which both derive from the
- * common {@link AbstractXmlApplicationContext} base class;
+ * <p>
+ * Concrete standalone subclasses of this base class, reading in a specific bean
+ * definition format, are {@link ClassPathXmlApplicationContext} and
+ * {@link FileSystemXmlApplicationContext}, which both derive from the common
+ * {@link AbstractXmlApplicationContext} base class;
  * {@link org.springframework.context.annotation.AnnotationConfigApplicationContext}
  * supports {@code @Configuration}-annotated classes as a source of bean definitions.
  *
@@ -61,7 +63,8 @@ import org.springframework.context.ApplicationContextException;
  * @see FileSystemXmlApplicationContext
  * @see org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
-public abstract class AbstractRefreshableApplicationContext extends AbstractApplicationContext {
+public abstract class AbstractRefreshableApplicationContext extends
+		AbstractApplicationContext {
 
 	private Boolean allowBeanDefinitionOverriding;
 
@@ -73,7 +76,6 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	/** Synchronization monitor for the internal BeanFactory */
 	private final Object beanFactoryMonitor = new Object();
 
-
 	/**
 	 * Create a new AbstractRefreshableApplicationContext with no parent.
 	 */
@@ -82,17 +84,18 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 
 	/**
 	 * Create a new AbstractRefreshableApplicationContext with the given parent context.
+	 * 
 	 * @param parent the parent context
 	 */
 	public AbstractRefreshableApplicationContext(ApplicationContext parent) {
 		super(parent);
 	}
 
-
 	/**
-	 * Set whether it should be allowed to override bean definitions by registering
-	 * a different definition with the same name, automatically replacing the former.
-	 * If not, an exception will be thrown. Default is "true".
+	 * Set whether it should be allowed to override bean definitions by registering a
+	 * different definition with the same name, automatically replacing the former. If
+	 * not, an exception will be thrown. Default is "true".
+	 * 
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
 	 */
 	public void setAllowBeanDefinitionOverriding(boolean allowBeanDefinitionOverriding) {
@@ -100,39 +103,49 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
-	 * Set whether to allow circular references between beans - and automatically
-	 * try to resolve them.
-	 * <p>Default is "true". Turn this off to throw an exception when encountering
-	 * a circular reference, disallowing them completely.
+	 * Set whether to allow circular references between beans - and automatically try to
+	 * resolve them.
+	 * <p>
+	 * Default is "true". Turn this off to throw an exception when encountering a circular
+	 * reference, disallowing them completely.
+	 * 
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowCircularReferences
 	 */
 	public void setAllowCircularReferences(boolean allowCircularReferences) {
 		this.allowCircularReferences = allowCircularReferences;
 	}
 
-
 	/**
-	 * This implementation performs an actual refresh of this context's underlying
-	 * bean factory, shutting down the previous bean factory (if any) and
-	 * initializing a fresh bean factory for the next phase of the context's lifecycle.
+	 * This implementation performs an actual refresh of this context's underlying bean
+	 * factory, shutting down the previous bean factory (if any) and initializing a fresh
+	 * bean factory for the next phase of the context's lifecycle.
 	 */
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
+		// 判断是否已经存在bean
 		if (hasBeanFactory()) {
+			// 存在时销毁Bean
 			destroyBeans();
+			// 关闭beanFactory
 			closeBeanFactory();
 		}
 		try {
+			// 创建一个DefaultListableBeanFactory实例
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
+			// 设置一个ID
 			beanFactory.setSerializationId(getId());
+			//设置自定义参数
 			customizeBeanFactory(beanFactory);
+			// 重点方法
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;
 			}
 		}
 		catch (IOException ex) {
-			throw new ApplicationContextException("I/O error parsing bean definition source for " + getDisplayName(), ex);
+			throw new ApplicationContextException(
+					"I/O error parsing bean definition source for " + getDisplayName(),
+					ex);
 		}
 	}
 
@@ -154,8 +167,8 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
-	 * Determine whether this context currently holds a bean factory,
-	 * i.e. has been refreshed at least once and not been closed yet.
+	 * Determine whether this context currently holds a bean factory, i.e. has been
+	 * refreshed at least once and not been closed yet.
 	 */
 	protected final boolean hasBeanFactory() {
 		synchronized (this.beanFactoryMonitor) {
@@ -167,8 +180,9 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	public final ConfigurableListableBeanFactory getBeanFactory() {
 		synchronized (this.beanFactoryMonitor) {
 			if (this.beanFactory == null) {
-				throw new IllegalStateException("BeanFactory not initialized or already closed - " +
-						"call 'refresh' before accessing beans via the ApplicationContext");
+				throw new IllegalStateException(
+						"BeanFactory not initialized or already closed - "
+								+ "call 'refresh' before accessing beans via the ApplicationContext");
 			}
 			return this.beanFactory;
 		}
@@ -183,13 +197,15 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
-	 * Create an internal bean factory for this context.
-	 * Called for each {@link #refresh()} attempt.
-	 * <p>The default implementation creates a
-	 * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
-	 * with the {@linkplain #getInternalParentBeanFactory() internal bean factory} of this
-	 * context's parent as parent bean factory. Can be overridden in subclasses,
-	 * for example to customize DefaultListableBeanFactory's settings.
+	 * Create an internal bean factory for this context. Called for each
+	 * {@link #refresh()} attempt.
+	 * <p>
+	 * The default implementation creates a
+	 * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory} with
+	 * the {@linkplain #getInternalParentBeanFactory() internal bean factory} of this
+	 * context's parent as parent bean factory. Can be overridden in subclasses, for
+	 * example to customize DefaultListableBeanFactory's settings.
+	 * 
 	 * @return the bean factory for this context
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowEagerClassLoading
@@ -201,13 +217,15 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
-	 * Customize the internal bean factory used by this context.
-	 * Called for each {@link #refresh()} attempt.
-	 * <p>The default implementation applies this context's
-	 * {@linkplain #setAllowBeanDefinitionOverriding "allowBeanDefinitionOverriding"}
-	 * and {@linkplain #setAllowCircularReferences "allowCircularReferences"} settings,
-	 * if specified. Can be overridden in subclasses to customize any of
+	 * Customize the internal bean factory used by this context. Called for each
+	 * {@link #refresh()} attempt.
+	 * <p>
+	 * The default implementation applies this context's
+	 * {@linkplain #setAllowBeanDefinitionOverriding "allowBeanDefinitionOverriding"} and
+	 * {@linkplain #setAllowCircularReferences "allowCircularReferences"} settings, if
+	 * specified. Can be overridden in subclasses to customize any of
 	 * {@link DefaultListableBeanFactory}'s settings.
+	 * 
 	 * @param beanFactory the newly created bean factory for this context
 	 * @see DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
 	 * @see DefaultListableBeanFactory#setAllowCircularReferences
@@ -224,8 +242,9 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
-	 * Load bean definitions into the given bean factory, typically through
-	 * delegating to one or more bean definition readers.
+	 * Load bean definitions into the given bean factory, typically through delegating to
+	 * one or more bean definition readers.
+	 * 
 	 * @param beanFactory the bean factory to load bean definitions into
 	 * @throws BeansException if parsing of the bean definitions failed
 	 * @throws IOException if loading of bean definition files failed

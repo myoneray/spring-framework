@@ -30,11 +30,11 @@ import org.springframework.core.io.Resource;
  * implementations, drawing configuration from XML documents containing bean definitions
  * understood by an {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
  *
- * <p>Subclasses just have to implement the {@link #getConfigResources} and/or
- * the {@link #getConfigLocations} method. Furthermore, they might override
- * the {@link #getResourceByPath} hook to interpret relative paths in an
- * environment-specific fashion, and/or {@link #getResourcePatternResolver}
- * for extended pattern resolution.
+ * <p>
+ * Subclasses just have to implement the {@link #getConfigResources} and/or the
+ * {@link #getConfigLocations} method. Furthermore, they might override the
+ * {@link #getResourceByPath} hook to interpret relative paths in an environment-specific
+ * fashion, and/or {@link #getResourcePatternResolver} for extended pattern resolution.
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -42,10 +42,10 @@ import org.springframework.core.io.Resource;
  * @see #getConfigLocations
  * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
  */
-public abstract class AbstractXmlApplicationContext extends AbstractRefreshableConfigApplicationContext {
+public abstract class AbstractXmlApplicationContext extends
+		AbstractRefreshableConfigApplicationContext {
 
 	private boolean validating = true;
-
 
 	/**
 	 * Create a new AbstractXmlApplicationContext with no parent.
@@ -55,12 +55,12 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 
 	/**
 	 * Create a new AbstractXmlApplicationContext with the given parent context.
+	 * 
 	 * @param parent the parent context
 	 */
 	public AbstractXmlApplicationContext(ApplicationContext parent) {
 		super(parent);
 	}
-
 
 	/**
 	 * Set whether to use XML validation. Default is {@code true}.
@@ -69,35 +69,44 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 		this.validating = validating;
 	}
 
-
 	/**
 	 * Loads the bean definitions via an XmlBeanDefinitionReader.
+	 * 
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 	 * @see #initBeanDefinitionReader
 	 * @see #loadBeanDefinitions
 	 */
+	// 此方法会通过XmlBeanDefinitionReader加载bean定义
 	@Override
-	protected void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) throws BeansException, IOException {
+	protected void loadBeanDefinitions(DefaultListableBeanFactory beanFactory)
+			throws BeansException, IOException {
 		// Create a new XmlBeanDefinitionReader for the given BeanFactory.
-		XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
+		// 为beanFactory创建一个新的XmlBeanDefinitionReader
+		XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(
+				beanFactory);
 
 		// Configure the bean definition reader with this context's
 		// resource loading environment.
+		// 配置beanDefinitionReader
 		beanDefinitionReader.setEnvironment(this.getEnvironment());
 		beanDefinitionReader.setResourceLoader(this);
 		beanDefinitionReader.setEntityResolver(new ResourceEntityResolver(this));
 
 		// Allow a subclass to provide custom initialization of the reader,
 		// then proceed with actually loading the bean definitions.
+		// 初始化bean定义
 		initBeanDefinitionReader(beanDefinitionReader);
+		// 加载bean定义
 		loadBeanDefinitions(beanDefinitionReader);
 	}
 
 	/**
-	 * Initialize the bean definition reader used for loading the bean
-	 * definitions of this context. Default implementation is empty.
-	 * <p>Can be overridden in subclasses, e.g. for turning off XML validation
-	 * or using a different XmlBeanDefinitionParser implementation.
+	 * Initialize the bean definition reader used for loading the bean definitions of this
+	 * context. Default implementation is empty.
+	 * <p>
+	 * Can be overridden in subclasses, e.g. for turning off XML validation or using a
+	 * different XmlBeanDefinitionParser implementation.
+	 * 
 	 * @param reader the bean definition reader used by this context
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader#setDocumentReaderClass
 	 */
@@ -107,8 +116,11 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 
 	/**
 	 * Load the bean definitions with the given XmlBeanDefinitionReader.
-	 * <p>The lifecycle of the bean factory is handled by the {@link #refreshBeanFactory}
-	 * method; hence this method is just supposed to load and/or register bean definitions.
+	 * <p>
+	 * The lifecycle of the bean factory is handled by the {@link #refreshBeanFactory}
+	 * method; hence this method is just supposed to load and/or register bean
+	 * definitions.
+	 * 
 	 * @param reader the XmlBeanDefinitionReader to use
 	 * @throws BeansException in case of bean registration errors
 	 * @throws IOException if the required XML document isn't found
@@ -117,7 +129,8 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	 * @see #getResources
 	 * @see #getResourcePatternResolver
 	 */
-	protected void loadBeanDefinitions(XmlBeanDefinitionReader reader) throws BeansException, IOException {
+	protected void loadBeanDefinitions(XmlBeanDefinitionReader reader)
+			throws BeansException, IOException {
 		Resource[] configResources = getConfigResources();
 		if (configResources != null) {
 			reader.loadBeanDefinitions(configResources);
@@ -129,10 +142,12 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	}
 
 	/**
-	 * Return an array of Resource objects, referring to the XML bean definition
-	 * files that this context should be built with.
-	 * <p>The default implementation returns {@code null}. Subclasses can override
-	 * this to provide pre-built Resource objects rather than location Strings.
+	 * Return an array of Resource objects, referring to the XML bean definition files
+	 * that this context should be built with.
+	 * <p>
+	 * The default implementation returns {@code null}. Subclasses can override this to
+	 * provide pre-built Resource objects rather than location Strings.
+	 * 
 	 * @return an array of Resource objects, or {@code null} if none
 	 * @see #getConfigLocations()
 	 */

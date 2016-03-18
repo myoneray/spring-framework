@@ -19,62 +19,57 @@ package org.springframework.beans.factory.config;
 import org.springframework.beans.BeansException;
 
 /**
- * Factory hook that allows for custom modification of new bean instances,
- * e.g. checking for marker interfaces or wrapping them with proxies.
- *
- * <p>ApplicationContexts can autodetect BeanPostProcessor beans in their
- * bean definitions and apply them to any beans subsequently created.
- * Plain bean factories allow for programmatic registration of post-processors,
- * applying to all beans created through this factory.
- *
- * <p>Typically, post-processors that populate beans via marker interfaces
- * or the like will implement {@link #postProcessBeforeInitialization},
- * while post-processors that wrap beans with proxies will normally
- * implement {@link #postProcessAfterInitialization}.
- *
- * @author Juergen Hoeller
- * @since 10.10.2003
- * @see InstantiationAwareBeanPostProcessor
- * @see DestructionAwareBeanPostProcessor
- * @see ConfigurableBeanFactory#addBeanPostProcessor
- * @see BeanFactoryPostProcessor
+ * BeanPostProcessor是Spring容器的一个扩展点，可以进行自定义的实例化、初始化、依赖装配、依赖检查等流程，
+ * 即可以覆盖默认的实例化，也可以增强初始化、依赖注入、依赖检查等流程，
+ * 
+ * @see http://www.iteye.com/topic/1122859
+ * @author upsmart
+ * @since 4.2.1
  */
 public interface BeanPostProcessor {
 
 	/**
 	 * Apply this BeanPostProcessor to the given new bean instance <i>before</i> any bean
-	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
-	 * or a custom init-method). The bean will already be populated with property values.
-	 * The returned bean instance may be a wrapper around the original.
+	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet} or a
+	 * custom init-method). The bean will already be populated with property values. The
+	 * returned bean instance may be a wrapper around the original.
+	 * 
 	 * @param bean the new bean instance
 	 * @param beanName the name of the bean
-	 * @return the bean instance to use, either the original or a wrapped one;
-	 * if {@code null}, no subsequent BeanPostProcessors will be invoked
+	 * @return the bean instance to use, either the original or a wrapped one; if
+	 *         {@code null}, no subsequent BeanPostProcessors will be invoked
 	 * @throws org.springframework.beans.BeansException in case of errors
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 */
-	Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException;
+	// 这是第九步
+	Object postProcessBeforeInitialization(Object bean, String beanName)
+			throws BeansException;
 
 	/**
 	 * Apply this BeanPostProcessor to the given new bean instance <i>after</i> any bean
-	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
-	 * or a custom init-method). The bean will already be populated with property values.
-	 * The returned bean instance may be a wrapper around the original.
-	 * <p>In case of a FactoryBean, this callback will be invoked for both the FactoryBean
+	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet} or a
+	 * custom init-method). The bean will already be populated with property values. The
+	 * returned bean instance may be a wrapper around the original.
+	 * <p>
+	 * In case of a FactoryBean, this callback will be invoked for both the FactoryBean
 	 * instance and the objects created by the FactoryBean (as of Spring 2.0). The
 	 * post-processor can decide whether to apply to either the FactoryBean or created
 	 * objects or both through corresponding {@code bean instanceof FactoryBean} checks.
-	 * <p>This callback will also be invoked after a short-circuiting triggered by a
+	 * <p>
+	 * This callback will also be invoked after a short-circuiting triggered by a
 	 * {@link InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation} method,
 	 * in contrast to all other BeanPostProcessor callbacks.
+	 * 
 	 * @param bean the new bean instance
 	 * @param beanName the name of the bean
-	 * @return the bean instance to use, either the original or a wrapped one;
-	 * if {@code null}, no subsequent BeanPostProcessors will be invoked
+	 * @return the bean instance to use, either the original or a wrapped one; if
+	 *         {@code null}, no subsequent BeanPostProcessors will be invoked
 	 * @throws org.springframework.beans.BeansException in case of errors
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.beans.factory.FactoryBean
 	 */
-	Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException;
+	// 这是第十二步 第十一步:a custom init-method definition
+	Object postProcessAfterInitialization(Object bean, String beanName)
+			throws BeansException;
 
 }

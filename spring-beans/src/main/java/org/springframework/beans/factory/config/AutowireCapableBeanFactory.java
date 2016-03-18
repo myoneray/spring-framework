@@ -57,7 +57,7 @@ import org.springframework.beans.factory.BeanFactory;
  * @see org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()
  */
 /**
- * 自动装备
+ * 功能:装配applicationContext管理之外的Bean
  * 
  * @author upsmart
  * @since 4.2.1
@@ -243,42 +243,19 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 			String beanName) throws BeansException;
 
 	/**
-	 * Apply {@link BeanPostProcessor BeanPostProcessors} to the given existing bean
-	 * instance, invoking their {@code postProcessAfterInitialization} methods. The
-	 * returned bean instance may be a wrapper around the original.
-	 * 
-	 * @param existingBean the new bean instance
-	 * @param beanName the name of the bean
-	 * @return the bean instance to use, either the original or a wrapped one
-	 * @throws BeansException if any post-processing failed
-	 * @see BeanPostProcessor#postProcessAfterInitialization
+	 * 调用其 @code postProcessAfterInitialization 方法,申请 @code BeanPostProcessor 给现有的 Bean实例,
+	 * The returned bean instance may be a wrapper around the original.
 	 */
 	Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName)
 			throws BeansException;
 
 	/**
-	 * Destroy the given bean instance (typically coming from {@link #createBean}),
-	 * applying the {@link org.springframework.beans.factory.DisposableBean} contract as
-	 * well as registered {@link DestructionAwareBeanPostProcessor
-	 * DestructionAwareBeanPostProcessors}.
-	 * <p>
-	 * Any exception that arises during destruction should be caught and logged instead of
-	 * propagated to the caller of this method.
-	 * 
-	 * @param existingBean the bean instance to destroy
+	 * 销毁指定的Bean
 	 */
 	void destroyBean(Object existingBean);
 
 	/**
-	 * Resolve the specified dependency against the beans defined in this factory.
-	 * 
-	 * @param descriptor the descriptor for the dependency
-	 * @param beanName the name of the bean which declares the present dependency
-	 * @param autowiredBeanNames a Set that all names of autowired beans (used for
-	 *        resolving the present dependency) are supposed to be added to
-	 * @param typeConverter the TypeConverter to use for populating arrays and collections
-	 * @return the resolved object, or {@code null} if none found
-	 * @throws BeansException in dependency resolution failed
+	 * 对bean指定依赖
 	 */
 	Object resolveDependency(DependencyDescriptor descriptor, String beanName,
 			Set<String> autowiredBeanNames, TypeConverter typeConverter)

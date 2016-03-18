@@ -74,11 +74,18 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 
 	private static final String FILTER_EXPRESSION_ATTRIBUTE = "expression";
 
+	/**
+	 * 不难看出这里定义了一个ClassPathBeanDefinitionScanner，通过它去扫描包中的类文件， <br>
+	 * 注意：这里是类文件而不是类，因为现在这些类还没有被加载， 只是ClassLoader能找到这些class的路径而已 。<br>
+	 * 到目前为止，感觉真想距离我们越来越近了。顺着继续往下摸。<br>
+	 * 进入doSacn方法里，映入眼帘的又是一大坨代码，但是我们只关心观点的部分。
+	 */
 
 	@Override
 	public BeanDefinition parse(Element element, ParserContext parserContext) {
 		String basePackage = element.getAttribute(BASE_PACKAGE_ATTRIBUTE);
-		basePackage = parserContext.getReaderContext().getEnvironment().resolvePlaceholders(basePackage);
+		basePackage = parserContext.getReaderContext().getEnvironment().resolvePlaceholders(
+				basePackage);
 		String[] basePackages = StringUtils.tokenizeToStringArray(basePackage,
 				ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS);
 
@@ -90,14 +97,16 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 		return null;
 	}
 
-	protected ClassPathBeanDefinitionScanner configureScanner(ParserContext parserContext, Element element) {
+	protected ClassPathBeanDefinitionScanner configureScanner(
+			ParserContext parserContext, Element element) {
 		boolean useDefaultFilters = true;
 		if (element.hasAttribute(USE_DEFAULT_FILTERS_ATTRIBUTE)) {
 			useDefaultFilters = Boolean.valueOf(element.getAttribute(USE_DEFAULT_FILTERS_ATTRIBUTE));
 		}
 
 		// Delegate bean definition registration to scanner class.
-		ClassPathBeanDefinitionScanner scanner = createScanner(parserContext.getReaderContext(), useDefaultFilters);
+		ClassPathBeanDefinitionScanner scanner = createScanner(
+				parserContext.getReaderContext(), useDefaultFilters);
 		scanner.setResourceLoader(parserContext.getReaderContext().getResourceLoader());
 		scanner.setEnvironment(parserContext.getReaderContext().getEnvironment());
 		scanner.setBeanDefinitionDefaults(parserContext.getDelegate().getBeanDefinitionDefaults());
@@ -111,14 +120,16 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 			parseBeanNameGenerator(element, scanner);
 		}
 		catch (Exception ex) {
-			parserContext.getReaderContext().error(ex.getMessage(), parserContext.extractSource(element), ex.getCause());
+			parserContext.getReaderContext().error(ex.getMessage(),
+					parserContext.extractSource(element), ex.getCause());
 		}
 
 		try {
 			parseScope(element, scanner);
 		}
 		catch (Exception ex) {
-			parserContext.getReaderContext().error(ex.getMessage(), parserContext.extractSource(element), ex.getCause());
+			parserContext.getReaderContext().error(ex.getMessage(),
+					parserContext.extractSource(element), ex.getCause());
 		}
 
 		parseTypeFilters(element, scanner, parserContext);
@@ -126,15 +137,18 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 		return scanner;
 	}
 
-	protected ClassPathBeanDefinitionScanner createScanner(XmlReaderContext readerContext, boolean useDefaultFilters) {
-		return new ClassPathBeanDefinitionScanner(readerContext.getRegistry(), useDefaultFilters);
+	protected ClassPathBeanDefinitionScanner createScanner(
+			XmlReaderContext readerContext, boolean useDefaultFilters) {
+		return new ClassPathBeanDefinitionScanner(readerContext.getRegistry(),
+				useDefaultFilters);
 	}
 
-	protected void registerComponents(
-			XmlReaderContext readerContext, Set<BeanDefinitionHolder> beanDefinitions, Element element) {
+	protected void registerComponents(XmlReaderContext readerContext,
+			Set<BeanDefinitionHolder> beanDefinitions, Element element) {
 
 		Object source = readerContext.extractSource(element);
-		CompositeComponentDefinition compositeDef = new CompositeComponentDefinition(element.getTagName(), source);
+		CompositeComponentDefinition compositeDef = new CompositeComponentDefinition(
+				element.getTagName(), source);
 
 		for (BeanDefinitionHolder beanDefHolder : beanDefinitions) {
 			compositeDef.addNestedComponent(new BeanComponentDefinition(beanDefHolder));
@@ -146,21 +160,23 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 			annotationConfig = Boolean.valueOf(element.getAttribute(ANNOTATION_CONFIG_ATTRIBUTE));
 		}
 		if (annotationConfig) {
-			Set<BeanDefinitionHolder> processorDefinitions =
-					AnnotationConfigUtils.registerAnnotationConfigProcessors(readerContext.getRegistry(), source);
+			Set<BeanDefinitionHolder> processorDefinitions = AnnotationConfigUtils.registerAnnotationConfigProcessors(
+					readerContext.getRegistry(), source);
 			for (BeanDefinitionHolder processorDefinition : processorDefinitions) {
-				compositeDef.addNestedComponent(new BeanComponentDefinition(processorDefinition));
+				compositeDef.addNestedComponent(new BeanComponentDefinition(
+						processorDefinition));
 			}
 		}
 
 		readerContext.fireComponentRegistered(compositeDef);
 	}
 
-	protected void parseBeanNameGenerator(Element element, ClassPathBeanDefinitionScanner scanner) {
+	protected void parseBeanNameGenerator(Element element,
+			ClassPathBeanDefinitionScanner scanner) {
 		if (element.hasAttribute(NAME_GENERATOR_ATTRIBUTE)) {
 			BeanNameGenerator beanNameGenerator = (BeanNameGenerator) instantiateUserDefinedStrategy(
-					element.getAttribute(NAME_GENERATOR_ATTRIBUTE), BeanNameGenerator.class,
-					scanner.getResourceLoader().getClassLoader());
+					element.getAttribute(NAME_GENERATOR_ATTRIBUTE),
+					BeanNameGenerator.class, scanner.getResourceLoader().getClassLoader());
 			scanner.setBeanNameGenerator(beanNameGenerator);
 		}
 	}
@@ -173,7 +189,8 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 						"Cannot define both 'scope-resolver' and 'scoped-proxy' on <component-scan> tag");
 			}
 			ScopeMetadataResolver scopeMetadataResolver = (ScopeMetadataResolver) instantiateUserDefinedStrategy(
-					element.getAttribute(SCOPE_RESOLVER_ATTRIBUTE), ScopeMetadataResolver.class,
+					element.getAttribute(SCOPE_RESOLVER_ATTRIBUTE),
+					ScopeMetadataResolver.class,
 					scanner.getResourceLoader().getClassLoader());
 			scanner.setScopeMetadataResolver(scopeMetadataResolver);
 		}
@@ -190,12 +207,14 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 				scanner.setScopedProxyMode(ScopedProxyMode.NO);
 			}
 			else {
-				throw new IllegalArgumentException("scoped-proxy only supports 'no', 'interfaces' and 'targetClass'");
+				throw new IllegalArgumentException(
+						"scoped-proxy only supports 'no', 'interfaces' and 'targetClass'");
 			}
 		}
 	}
 
-	protected void parseTypeFilters(Element element, ClassPathBeanDefinitionScanner scanner, ParserContext parserContext) {
+	protected void parseTypeFilters(Element element,
+			ClassPathBeanDefinitionScanner scanner, ParserContext parserContext) {
 		// Parse exclude and include filter elements.
 		ClassLoader classLoader = scanner.getResourceLoader().getClassLoader();
 		NodeList nodeList = element.getChildNodes();
@@ -205,30 +224,35 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 				String localName = parserContext.getDelegate().getLocalName(node);
 				try {
 					if (INCLUDE_FILTER_ELEMENT.equals(localName)) {
-						TypeFilter typeFilter = createTypeFilter((Element) node, classLoader, parserContext);
+						TypeFilter typeFilter = createTypeFilter((Element) node,
+								classLoader, parserContext);
 						scanner.addIncludeFilter(typeFilter);
 					}
 					else if (EXCLUDE_FILTER_ELEMENT.equals(localName)) {
-						TypeFilter typeFilter = createTypeFilter((Element) node, classLoader, parserContext);
+						TypeFilter typeFilter = createTypeFilter((Element) node,
+								classLoader, parserContext);
 						scanner.addExcludeFilter(typeFilter);
 					}
 				}
 				catch (Exception ex) {
-					parserContext.getReaderContext().error(
-							ex.getMessage(), parserContext.extractSource(element), ex.getCause());
+					parserContext.getReaderContext().error(ex.getMessage(),
+							parserContext.extractSource(element), ex.getCause());
 				}
 			}
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	protected TypeFilter createTypeFilter(Element element, ClassLoader classLoader, ParserContext parserContext) {
+	protected TypeFilter createTypeFilter(Element element, ClassLoader classLoader,
+			ParserContext parserContext) {
 		String filterType = element.getAttribute(FILTER_TYPE_ATTRIBUTE);
 		String expression = element.getAttribute(FILTER_EXPRESSION_ATTRIBUTE);
-		expression = parserContext.getReaderContext().getEnvironment().resolvePlaceholders(expression);
+		expression = parserContext.getReaderContext().getEnvironment().resolvePlaceholders(
+				expression);
 		try {
 			if ("annotation".equals(filterType)) {
-				return new AnnotationTypeFilter((Class<Annotation>) classLoader.loadClass(expression));
+				return new AnnotationTypeFilter(
+						(Class<Annotation>) classLoader.loadClass(expression));
 			}
 			else if ("assignable".equals(filterType)) {
 				return new AssignableTypeFilter(classLoader.loadClass(expression));
@@ -242,13 +266,14 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 			else if ("custom".equals(filterType)) {
 				Class<?> filterClass = classLoader.loadClass(expression);
 				if (!TypeFilter.class.isAssignableFrom(filterClass)) {
-					throw new IllegalArgumentException(
-							"Class is not assignable to [" + TypeFilter.class.getName() + "]: " + expression);
+					throw new IllegalArgumentException("Class is not assignable to ["
+							+ TypeFilter.class.getName() + "]: " + expression);
 				}
 				return (TypeFilter) BeanUtils.instantiateClass(filterClass);
 			}
 			else {
-				throw new IllegalArgumentException("Unsupported filter type: " + filterType);
+				throw new IllegalArgumentException("Unsupported filter type: "
+						+ filterType);
 			}
 		}
 		catch (ClassNotFoundException ex) {
@@ -257,22 +282,25 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 	}
 
 	@SuppressWarnings("unchecked")
-	private Object instantiateUserDefinedStrategy(String className, Class<?> strategyType, ClassLoader classLoader) {
+	private Object instantiateUserDefinedStrategy(String className,
+			Class<?> strategyType, ClassLoader classLoader) {
 		Object result;
 		try {
 			result = classLoader.loadClass(className).newInstance();
 		}
 		catch (ClassNotFoundException ex) {
-			throw new IllegalArgumentException("Class [" + className + "] for strategy [" +
-					strategyType.getName() + "] not found", ex);
+			throw new IllegalArgumentException("Class [" + className + "] for strategy ["
+					+ strategyType.getName() + "] not found", ex);
 		}
 		catch (Exception ex) {
-			throw new IllegalArgumentException("Unable to instantiate class [" + className + "] for strategy [" +
-					strategyType.getName() + "]: a zero-argument constructor is required", ex);
+			throw new IllegalArgumentException("Unable to instantiate class ["
+					+ className + "] for strategy [" + strategyType.getName()
+					+ "]: a zero-argument constructor is required", ex);
 		}
 
 		if (!strategyType.isAssignableFrom(result.getClass())) {
-			throw new IllegalArgumentException("Provided class name must be an implementation of " + strategyType);
+			throw new IllegalArgumentException(
+					"Provided class name must be an implementation of " + strategyType);
 		}
 		return result;
 	}
