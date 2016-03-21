@@ -65,7 +65,8 @@ import org.springframework.core.ResolvableType;
  *
  * <p>
  * Bean factory implementations should support the standard bean lifecycle interfaces as
- * far as possible. The full set of initialization methods and their standard order is:<br>
+ * far as possible. The full set of initialization methods and their standard order is:
+ * <br>
  * 1. BeanNameAware's {@code setBeanName}<br>
  * 2. BeanClassLoaderAware's {@code setBeanClassLoader}<br>
  * 3. BeanFactoryAware's {@code setBeanFactory}<br>
@@ -97,16 +98,23 @@ import org.springframework.core.ResolvableType;
  * @see 2>BeanClassLoaderAware#setBeanClassLoader
  * @see 3>BeanFactoryAware#setBeanFactory
  * @see 4>org.springframework.context.ResourceLoaderAware#setResourceLoader
- * @see 5>org.springframework.context.ApplicationEventPublisherAware#setApplicationEventPublisher
+ * @see 5>org.springframework.context.ApplicationEventPublisherAware#
+ *      setApplicationEventPublisher
  * @see 6>org.springframework.context.MessageSourceAware#setMessageSource
  * @see 7>org.springframework.context.ApplicationContextAware#setApplicationContext
  * @see 8>org.springframework.web.context.ServletContextAware#setServletContext
- * @see 9>org.springframework.beans.factory.config.BeanPostProcessor#postProcessBeforeInitialization
+ * @see 9>org.springframework.beans.factory.config.BeanPostProcessor#
+ *      postProcessBeforeInitialization
  * @see 10>InitializingBean#afterPropertiesSet
  * @see 11>org.springframework.beans.factory.support.RootBeanDefinition#getInitMethodName
- * @see 12>org.springframework.beans.factory.config.BeanPostProcessor#postProcessAfterInitialization
+ * @see 12>org.springframework.beans.factory.config.BeanPostProcessor#
+ *      postProcessAfterInitialization
  * @see 13>DisposableBean#destroy
- * @see 14>org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName
+ * @see 14>org.springframework.beans.factory.support.RootBeanDefinition#
+ *      getDestroyMethodName
+ * 
+ * 
+ * @see 具体实现1>:org.springframework.beans.factory.support.AbstractBeanFactory# doGetBean
  */
 public interface BeanFactory {
 

@@ -33,6 +33,7 @@ public class BeanCurrentlyInCreationException extends BeanCreationException {
 	 */
 	public BeanCurrentlyInCreationException(String beanName) {
 		super(beanName,
+				//请求的bean正在创建:引用是一个无法解决的循环?
 				"Requested bean is currently in creation: Is there an unresolvable circular reference?");
 	}
 
